@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+  WiX supports building localized installers through the use of language files that include localized strings.
+  It is a good practice to put all your strings in a language file as you create your setup, 
+  even if you do not currently plan on shipping localized versions of your installer. 
+
+  Project > Projectname Properties selecting the Build tab. In the Cultures to build field 
+  enter the semicolon list of cultures or culture groups you would like built.
+-->
+<WixLocalization Culture="en-us" xmlns="http://schemas.microsoft.com/wix/2006/localization">
+  <String Id="LANG">1033</String>
+  <String Id="Comments">(c) 2013 Barcalys.</String>
+  <String Id="Description">Installs Web Client Web Site.</String>
+  <String Id="Keywords">Client.Web.WIX,Installer,MSI.</String>
+  <String Id="ProductName">Client.Web</String>
+  <String Id="CompanyName">iCode.net</String>
+  <String Id="DowngradeErrorMessage">A higher version already exists.</String>
+  <String Id="Administrator">You have to be an administrator.</String>
+  <String Id="IISVersion">IIS 6 or greater install is required. </String>
+  <String Id="NETFRAMEWORK40FULL">NETFRAMEWORK40FULL is required. </String>
+  <String Id="SelectInstallAddress">Select Installation Address </String>
+  <String Id="SelectConfigFile">Select which configuration file to use: </String>
+  <String Id="Config">ENVIRONMENT: </String>
+  <String Id="Site">Site</String>
+  <String Id="VirtualDirectory">Virtual Directory</String>
+
+  <String Id="Info1">The application will be hosted as a Application in a root level site.</String>
+  <String Id="Info2">Select the parent Site to host the application:</String>
+  <String Id="SelectConfigInfo">Select the configuration file used by the application:</String>
+
+  <String Id="DefaultVirtualDirectoryName">Icode</String>
+
+</WixLocalization>

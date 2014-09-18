@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Include>
+  <!-- Get the ASP.NET DLL path (used for registering script maps below) -->
+  <PropertyRef Id="NETFRAMEWORK40FULLINSTALLROOTDIR"/>
+  <SetProperty Id="ASPNETISAPIDLL" Sequence="execute" Before="ConfigureIIs"
+               Value="[NETFRAMEWORK40FULLINSTALLROOTDIR]aspnet_isapi.dll" />
+  <SetProperty Id="ASPNETREGIIS" Sequence="execute" Before="ConfigureIIs"
+               Value="[NETFRAMEWORK40FULLINSTALLROOTDIR]aspnet_regiis.exe" />
+
+  <Property Id="WEBSITE_DESCRIPTION">
+    <RegistrySearch Id="WebSiteDescription" Name="WebSiteDescription" Root="HKLM"
+                    Key="SOFTWARE\!(loc.CompanyName)\!(loc.ProductName)\Install"
+                    Type="raw" />
+  </Property>
+  <Property Id="WEBSITE_ID">
+    <RegistrySearch Id="WebSiteID" Name="WebSiteID" Root="HKLM"
+                    Key="SOFTWARE\!(loc.CompanyName)\!(loc.ProductName)\Install"
+                    Type="raw" />
+  </Property>
+  <Property Id="WEBSITE_PATH">
+    <RegistrySearch Id="WebSitePath" Name="WebSitePath" Root="HKLM"
+                    Key="SOFTWARE\!(loc.CompanyName)\!(loc.ProductName)\Install"
+                    Type="raw" />
+  </Property>
+  <Property Id="WEBSITE_VD">
+    <RegistrySearch Id="WebSiteVD" Name="WebSiteVD" Root="HKLM"
+                    Key="SOFTWARE\!(loc.CompanyName)\!(loc.ProductName)\Install"
+                    Type="raw" />
+  </Property>
+
+  <CustomTable Id="AvailableWebSites">
+    <Column Id="WebSiteID" Category="Identifier" PrimaryKey="yes" Type="int"
+            Width="4" />
+    <Column Id="WebSiteDescription" Category="Text" Type="string"
+            PrimaryKey="no"/>
+    <Column Id="WebSitePath" Category="Text" Type="string" PrimaryKey="no"
+            Nullable="yes" />
+
+    <Row>
+      <Data Column="WebSiteID">0</Data>
+      <Data Column="WebSiteDescription">Dummy</Data>
+      <Data Column="WebSitePath"></Data>
+    </Row>
+  </CustomTable>
+</Include>

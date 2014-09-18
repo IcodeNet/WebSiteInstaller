@@ -1,0 +1,11 @@
+C:\Development\GitHub\WebSiteInstaller\Build\Debug\configs\web.Release.config
+C:\Development\GitHub\WebSiteInstaller\Build\Debug\configs\web.Debug.config
+C:\Development\GitHub\WebSiteInstaller\Build\Debug\configs\web.OAT.config
+C:\Development\GitHub\WebSiteInstaller\Build\Debug\configs\web.UAT.config
+C:\Development\GitHub\WebSiteInstaller\Build\Debug\configs\web.SIT.config
+C:\Development\GitHub\WebSiteInstaller\Build\Debug\index.html
+C:\Development\GitHub\WebSiteInstaller\Build\Debug\configs\web.Debug.config
+C:\Development\GitHub\WebSiteInstaller\Build\Debug\configs\web.Release.config
+C:\Development\GitHub\WebSiteInstaller\Build\Debug\configs\web.OAT.config
+C:\Development\GitHub\WebSiteInstaller\Build\Debug\configs\web.SIT.config
+C:\Development\GitHub\WebSiteInstaller\Build\Debug\configs\web.UAT.config

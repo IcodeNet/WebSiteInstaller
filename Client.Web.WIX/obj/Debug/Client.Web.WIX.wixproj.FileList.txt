@@ -1,0 +1,11 @@
+C:\Development\GitHub\WebSiteInstaller\Client.Web.WIX\bin\Debug\en-us\Client.Web.WIX.msi
+C:\Development\GitHub\WebSiteInstaller\Client.Web.WIX\bin\Debug\en-us\Client.Web.WIX.wixpdb
+obj\Debug\DeployEnvironmentConfig.wixobj
+obj\Debug\InstallSelectConfigurationDlg.wixobj
+obj\Debug\InstallationAddressDlg.wixobj
+obj\Debug\MyUI.wixobj
+obj\Debug\Product.wixobj
+obj\Debug\WebsiteFiles.wixobj
+obj\Debug\Client.Web.WIX.wixproj.BindContentsFileListen-us.txt
+obj\Debug\Client.Web.WIX.wixproj.BindOutputsFileListen-us.txt
+obj\Debug\Client.Web.WIX.wixproj.BindBuiltOutputsFileListen-us.txt

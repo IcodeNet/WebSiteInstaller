@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+    <Fragment>
+        <DirectoryRef Id="INSTALLDIR">
+            <Directory Id="dir83FA5C5966252E3F8F7034BE7C9B0D16" Name="configs" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <ComponentGroup Id="WebsiteFiles">
+            <Component Id="cmp4DDC82E01D2D1CC7AFB58419950057B7" Directory="INSTALLDIR" Guid="{1AF7024F-A402-44A3-A8FB-D33243B5108D}">
+                <File Id="filFBA25BBD0B71E1AC840C0537D801F038" KeyPath="yes" Source="$(var.SourceDir)\index.html" />
+            </Component>
+            <Component Id="cmp71B9156E22DB3B2BB2FEA5AE99F4A3D8" Directory="dir83FA5C5966252E3F8F7034BE7C9B0D16" Guid="{AF3A4509-0270-4486-8F98-B8E93214C86B}">
+                <File Id="fil26DDA768A3F6F3EC200A2689AE86952F" KeyPath="yes" Source="$(var.SourceDir)\configs\web.Debug.config" />
+            </Component>
+            <Component Id="cmp4A86E58325508EC16B3B3E82FBE33236" Directory="dir83FA5C5966252E3F8F7034BE7C9B0D16" Guid="{AA8A34A0-EFF7-4A33-B1CB-8FCBB6245A73}">
+                <File Id="fil993D70FF70E757DECBF1C89A034E55A5" KeyPath="yes" Source="$(var.SourceDir)\configs\web.OAT.config" />
+            </Component>
+            <Component Id="cmp107602F5E651F09C1F75B1891B3EA1F8" Directory="dir83FA5C5966252E3F8F7034BE7C9B0D16" Guid="{CC6BD9F0-4057-4799-B7D4-A4B34D16298C}">
+                <File Id="fil0E5E6577DD27BF878D712DA64659D16D" KeyPath="yes" Source="$(var.SourceDir)\configs\web.Release.config" />
+            </Component>
+            <Component Id="cmp57867264D02C40A224C6DD08AE8B9988" Directory="dir83FA5C5966252E3F8F7034BE7C9B0D16" Guid="{20590701-5B3C-442F-85D6-633CD58D85F6}">
+                <File Id="filDBFE99AD7E0FF39C717C71C0B017E9DB" KeyPath="yes" Source="$(var.SourceDir)\configs\web.SIT.config" />
+            </Component>
+            <Component Id="cmp28AB3FCA839AC1502F187DE4A20EC599" Directory="dir83FA5C5966252E3F8F7034BE7C9B0D16" Guid="{89070204-EDB7-4268-86E6-B419DBAA4635}">
+                <File Id="filBFABD24048D5350F48B3585A630E46AB" KeyPath="yes" Source="$(var.SourceDir)\configs\web.UAT.config" />
+            </Component>
+        </ComponentGroup>
+    </Fragment>
+</Wix>

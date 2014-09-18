@@ -1,0 +1,7 @@
+C:\Development\GitHub\WebSiteInstaller\Setup.CustomActions\bin\Debug\Setup.CustomActions.dll
+C:\Development\GitHub\WebSiteInstaller\Setup.CustomActions\bin\Debug\Setup.CustomActions.CA.dll
+C:\Development\GitHub\WebSiteInstaller\Setup.CustomActions\bin\Debug\Setup.CustomActions.pdb
+C:\Development\GitHub\WebSiteInstaller\Setup.CustomActions\bin\Debug\Microsoft.Deployment.WindowsInstaller.dll
+C:\Development\GitHub\WebSiteInstaller\Setup.CustomActions\bin\Debug\Microsoft.Deployment.WindowsInstaller.xml
+C:\Development\GitHub\WebSiteInstaller\Setup.CustomActions\obj\Debug\Setup.CustomActions.dll
+C:\Development\GitHub\WebSiteInstaller\Setup.CustomActions\obj\Debug\Setup.CustomActions.pdb

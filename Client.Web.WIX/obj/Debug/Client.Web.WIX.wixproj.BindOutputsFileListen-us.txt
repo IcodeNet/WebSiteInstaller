@@ -1,0 +1,2 @@
+C:\Development\GitHub\WebSiteInstaller\Client.Web.WIX\bin\Debug\en-us\Client.Web.WIX.msi
+C:\Development\GitHub\WebSiteInstaller\Client.Web.WIX\bin\Debug\en-us\Client.Web.WIX.wixpdb

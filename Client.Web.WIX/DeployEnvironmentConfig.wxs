@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Fragment>
+    <ComponentGroup Id="DeployEnvironmentConfig">
+      <!-- Swap in an appropriate config file based on the chosen environment -->
+      <Component Id="cmp3702FD087BAF4C74AFF0F5B8BE86B027" Directory="INSTALLDIR" Guid="{78D12327-30D1-4E4C-9F0D-51B81A68C895}">
+        <File Name="web.config" Id="web_config_debug" Source="$(var.SourceDir)\configs\web.Debug.config"/>
+        <Condition><![CDATA[CONFIG="Debug"]]></Condition>
+      </Component>
+
+      <Component Id="cmp46FDF759ED014654844A1C72EF171BB6" Directory="INSTALLDIR" Guid="{0C9BD4EE-9799-448F-A4A8-D355B658329D}">
+        <File Name="web.config" Id="web_config_sit" Source="$(var.SourceDir)\configs\web.SIT.config"/>
+        <Condition><![CDATA[CONFIG="SIT"]]></Condition>
+      </Component>
+
+      <Component Id="cmpD05A7522358C4D9BB5488D1A971B1732" Directory="INSTALLDIR" Guid="{D05A7522-358C-4D9B-B548-8D1A971B1732}">
+        <File Name="web.config" Id="web_config_oat" Source="$(var.SourceDir)\configs\web.OAT.config"/>
+        <Condition><![CDATA[CONFIG="OAT"]]></Condition>
+      </Component>
+      
+      <Component Id="cmpCE3F32925E5B44CE82166CBC06ECC7D1" Directory="INSTALLDIR" Guid="{CE3F3292-5E5B-44CE-8216-6CBC06ECC7D1}">
+        <File Name="web.config" Id="web_config_uat" Source="$(var.SourceDir)\configs\web.UAT.config"/>
+        <Condition><![CDATA[CONFIG="UAT"]]></Condition>
+      </Component>
+
+      <Component Id="cmp745355F6B6184501A35BCB258DE0A4F1" Directory="INSTALLDIR" Guid="{745355F6-B618-4501-A35B-CB258DE0A4F1}">
+        <File Name="web.config" Id="web_config_live" Source="$(var.SourceDir)\configs\web.Release.config"/>
+        <Condition><![CDATA[CONFIG="Live"]]></Condition>
+      </Component>
+
+
+    </ComponentGroup>
+  </Fragment>
+</Wix>

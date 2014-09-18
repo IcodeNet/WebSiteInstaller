@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
+     xmlns:netfx="http://schemas.microsoft.com/wix/NetFxExtension"
+     xmlns:iis="http://schemas.microsoft.com/wix/IIsExtension">
+
+  <!-- Principal product details. This name is shown in Add/Remove Programs -->
+  <Product Id="*"
+           Name="!(loc.ProductName)"
+           Language="!(loc.LANG)"
+           Version="1.0.0.0"
+           Manufacturer="!(loc.CompanyName)"
+           UpgradeCode="70149815-BFE5-437F-A1C7-393F79CE2E5E">
+
+    <Package InstallerVersion="200"
+             Compressed="yes"
+             InstallScope="perMachine"
+             Manufacturer="!(loc.CompanyName)"
+             Description="!(loc.Description)"
+             Keywords="!(loc.Keywords)"
+             Comments="!(loc.Comments)" />
+
+    <Icon Id="icon.ico" SourceFile="favicon.ico"/>
+    <Property Id="ARPPRODUCTICON" Value="icon.ico" />
+
+    <!-- The banner at the top right of most screens. Its dimensions should be  493x58 px and should be a .bmp file-->
+    <WixVariable Id="WixUIBannerBmp" Value="FnetLogo.bmp"/>
+    
+    <!-- Apply our settings -->
+    <?include Settings.wxi ?>
+    <!-- Perform conditional checks -->
+    <?include Conditions.wxi ?>
+    <!-- Get our website properties defined/initialised -->
+    <?include WebSites.wxi ?>
+
+    <Media Id="1" Cabinet="Client.Web.1.0.0.0.cab" EmbedCab="yes" />
+
+    <!-- Default path to which the product will be installed-->
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="IISMain" Name='inetpub'>
+        <Directory Id="WWWMain" Name='icodeApps' ComponentGuidGenerationSeed='CA19CA4A-C69B-4CDB-BCBD-6C3C5E9A3EDC'>
+          <Directory Id="INSTALLDIR" Name="!(loc.DefaultVirtualDirectoryName)" >
+            <!-- The component to define the Virtual Directory.-->
+            <Component Id="WebVirtualDirComponent" Guid="A720C1C9-1D8D-4941-976D-FB1C5C9EF8BB">
+
+              <!-- Define App Pool - identity if not set defaults to: ApplicationPoolIdentity -->
+              <iis:WebAppPool Id="AppPool" Name="[VD][WEBSITE_ID]" ManagedRuntimeVersion="v4.0" IdleTimeout="0" RecycleMinutes="0" ManagedPipelineMode="integrated">
+              </iis:WebAppPool>
+
+              <iis:WebVirtualDir Id="VDir" Alias="[VD]" Directory="INSTALLDIR" WebSite="SelectedWebSite">
+
+                <iis:WebApplication Id="MyWebAppApplication" WebAppPool="AppPool" Name="[VD][WEBSITE_ID]" />
+                <iis:WebDirProperties Id="MyWebSite_Properties" AnonymousAccess="yes"
+                                      WindowsAuthentication="no" DefaultDocuments="Default.aspx" />
+              </iis:WebVirtualDir>
+              <CreateFolder/>
+              <!-- Need to have to ensure created -->
+            </Component>
+
+            <Component Id="EnableASPNet4Extension" Permanent="yes"
+                       Guid="C8CDAB96-5DDC-4B4C-AD7E-CD09B59F7813">
+              <CreateFolder/>
+              <!-- Need to have to ensure created -->
+              <iis:WebServiceExtension Id="ASPNet4Extension" Group="ASP.NET v4.0.30319" Allow="yes"
+                                       File="[ASPNETISAPIDLL]" Description="ASP.NET v4.0.30319"
+                                       UIDeletable="no"/>
+            </Component>
+
+            <Component Id="PersistWebSiteValues" Guid="C3DAE2E2-FB49-48ba-ACB0-B2B5B726AE65">
+              <RegistryKey ForceCreateOnInstall="yes" Root="HKLM" Key="SOFTWARE\!(loc.CompanyName)\!(loc.ProductName)\Install">
+                <RegistryValue Name="WebSiteDescription" Type="string" Value="[WEBSITE_DESCRIPTION]"/>
+                <RegistryValue Name="WebSiteID" Type="string" Value="[WEBSITE_ID]"/>
+                <RegistryValue Name="WebSitePath" Type="string" Value="[WEBSITE_PATH]"/>
+                <RegistryValue Name="WebSiteVD" Type="string" Value="[VD]"/>
+              </RegistryKey>
+            </Component>
+
+          </Directory>
+        </Directory>
+      </Directory>
+    </Directory>
+
+    <!--What this does is tie up our INSTALLDIR path defined on our earlier directory definition
+    to the property used on the standard WixUI_InstallDir dialog.-->
+    <Property Id="WIXUI_INSTALLDIR" Value="INSTALLDIR" />
+    
+    <!--define a reference to the custom UI we want to use, 
+    as it’s neater to put the UI definition in a separate file .wxs
+    In MyUI.wxs we will have a  <UI Id="WixUI_WebUI">
+    -->
+    <UIRef Id="WixUI_WebUI" />
+
+    <iis:WebSite Id='SelectedWebSite' Description='[WEBSITE_DESCRIPTION]' Directory='INSTALLDIR' SiteId='[WEBSITE_ID]'>
+      <!-- This element has to be here or WiX does not compile. -->
+      <iis:WebAddress Id="AllUnassigned" Port="80"/>
+    </iis:WebSite>
+
+    <Feature Id="ProductFeature" ConfigurableDirectory="INSTALLDIR"  Title="!(loc.ProductName)" Level="1">
+      <ComponentRef Id='WebVirtualDirComponent' />
+      <ComponentRef Id='EnableASPNet4Extension'/>
+
+      <ComponentGroupRef Id="WebsiteFiles" />
+      <ComponentRef Id="PersistWebSiteValues" />
+      
+      <!-- Reference WixUIExtension.dll -->
+      <ComponentGroupRef  Id="DeployEnvironmentConfig"/>
+    </Feature>
+
+    <InstallExecuteSequence>
+      <!-- Before we install our files we want to Stop the Application Pool to release any file locks. -->
+      <Custom Action='StopApplicationPool' Before='InstallFiles' />
+
+      <!-- After we install our files we want to Start the Application Pool. -->
+      <Custom Action='StartApplicationPool' After='InstallFiles'/>
+    </InstallExecuteSequence>
+    
+    <UIRef Id="WixUI_ErrorProgressText" />
+  </Product>
+</Wix>
